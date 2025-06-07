@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import type { CollectionEntry } from "astro:content";
+import DateTime from "../components/DateTime.astro";
+
+type Props = CollectionEntry<"blog">["data"];
+
+const { title, description, publishedAt, updatedAt } = Astro.props;
+---
+
+<BaseLayout>
+	<main class="container mx-auto px-8 py-20">
+		<article>
+			<div class="prose">
+				<h1>{title}</h1>
+				<p>
+					<strong>Published on: </strong>
+					<DateTime date={publishedAt} />
+					{updatedAt && (
+						<strong>Last updated on: </strong>
+						<DateTime date={updatedAt} />
+					)}
+				</p>
+				<hr />
+				<slot />
+			</div>
+		</article>
+	</main>
+</BaseLayout>
+
+<style is:global>
+	.prose {
+		max-width: 100%;
+		margin: 0;
+		padding: 0;
+		color: rgb(13, 13, 13);
+		font-family:
+			ui-sans-serif,
+			-apple-system,
+			system-ui,
+			Segoe UI,
+			Helvetica,
+			Apple Color Emoji,
+			Arial,
+			sans-serif,
+			Segoe UI Emoji,
+			Segoe UI Symbol;
+		line-height: 1.75;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+	}
+
+	.prose h1 {
+		margin-bottom: 32px;
+		font-size: 36px;
+		font-weight: 600;
+		line-height: 1.1111;
+	}
+
+	.prose h2 {
+		margin-top: 32px;
+		margin-bottom: 12px;
+		font-size: 24px;
+		font-weight: 600;
+		line-height: 1.33333;
+	}
+
+	.prose h3 {
+		margin-top: 24px;
+		margin-bottom: 8px;
+		font-size: 20px;
+		font-weight: 600;
+		line-height: 1.6;
+	}
+
+	.prose p {
+		margin: 8px 0;
+		font-size: 16px;
+	}
+
+	.prose strong {
+		font-weight: 600;
+	}
+
+	.prose hr {
+		margin: 40px 0;
+		height: 0;
+		border: none;
+		border-top: 1px solid rgba(13, 13, 13, 0.05);
+	}
+
+	.prose a {
+		color: #007aff;
+		text-decoration: none;
+	}
+
+	.prose a:hover {
+		text-decoration: underline;
+	}
+
+	.prose blockquote {
+		position: relative;
+		margin: 1.5rem 0;
+		border-left: 4px solid rgba(0, 0, 0, 0.15);
+		border-radius: 2px;
+		padding: 8px 0 8px 24px;
+	}
+
+	.prose blockquote > p {
+		margin: 0;
+	}
+
+	.prose pre {
+		margin-top: 8px;
+		padding: 16px;
+		border-radius: 16px;
+		overflow-x: auto;
+	}
+
+	.prose .astro-code {
+		background-color: rgb(249, 249, 249) !important;
+		font-family:
+			ui-monospace,
+			SFMono-Regular,
+			SF Mono,
+			Menlo,
+			Consolas,
+			Liberation Mono,
+			monospace !important;
+	}
+
+	.prose code:not(pre > code) {
+		background-color: rgb(236, 236, 236);
+		padding: 2.4px 4.8px;
+		border-radius: 4px;
+		font-size: 14px;
+	}
+
+	.prose ul,
+	.prose ol {
+		margin-top: 0;
+		padding-left: 26px;
+		margin-bottom: 16px;
+		list-style: initial;
+	}
+
+	.prose li {
+		margin: 8px 0;
+	}
+
+	.prose img {
+		margin: 32px 0;
+		max-width: 100%;
+		width: auto;
+		height: auto;
+	}
+</style>

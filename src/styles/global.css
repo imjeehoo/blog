@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+    --color-foreground: #0d0d0d;
+    --color-muted: #8f8f8f;
+
+    --breakpoint-xl: initial;
+    --breakpoint-2xl: initial;
+    --breakpoint-3xl: initial;
+    --breakpoint-4xl: initial;
+}

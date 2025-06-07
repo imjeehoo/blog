@@ -1,0 +1,21 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+
+import "../styles/global.css";
+
+export interface Props {
+    class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <BaseHead title="My Blog" description="Welcome to my blog!" />
+    </head>
+    <body class={className}>
+        <slot />
+    </body>
+</html>
